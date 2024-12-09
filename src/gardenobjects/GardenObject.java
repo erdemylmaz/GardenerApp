@@ -2,7 +2,7 @@ package gardenobjects;
 
 import garden.Placable;
 
-public abstract class GardenObject implements Placable {
+public abstract class GardenObject implements Placable, Searchable {
     private String id;
     public String getID() {
         return id;

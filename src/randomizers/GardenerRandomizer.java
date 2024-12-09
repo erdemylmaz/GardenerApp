@@ -8,9 +8,9 @@ import pollen.PollenCloud;
 public class GardenerRandomizer {
     private Random randomizer;
     public GardenPosition randomPosition() {
-
+        return null;
     }
     public PollenCloud randomCloud() {
-
+        return null;
     }
 }
