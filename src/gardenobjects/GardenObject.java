@@ -11,7 +11,7 @@ public abstract class GardenObject implements Placable, Searchable {
         this.id = newId;
     }
     @Override
-    public String toString() {
-        return id;
+    public String getDisplay() {
+        return this.getID();
     }
 }
