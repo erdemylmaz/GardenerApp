@@ -1,10 +1,11 @@
 package garden;
 
 import gardenobjects.GardenObject;
-import java.util.ArrayList;
+import java.util.List;
 
 public class Garden {
     private GardenMap map;
-    private ArrayList<GardenObject> gardenStorage;
-    private ArrayList<GardenObject> placedObjects;
+    private List<GardenObject> gardenStorage;
+    private List<GardenObject> placedObjects;
+    
 }
