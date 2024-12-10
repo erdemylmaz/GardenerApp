@@ -1,7 +1,7 @@
 package app;
 
 import gardenobjects.GardenObject;
-import pollen.LightColor;
+import pollen.PollenCloud;
 import storageshed.StorageShed;
 
 import java.util.ArrayList;
@@ -17,22 +17,9 @@ public class Menu {
         scanner = new Scanner(System.in);
     }
 
-    public void displayGoal(String[] pollen, LightColor[] color) {
+    public void displayGoal(PollenCloud pollen) {
         System.out.print("Welcome to Garden Puzzle App. Your goal Square needs ");
-        for (int i = 0; i < pollen.length; i++) {
-            System.out.print(pollen[i]);
-            if (i < pollen.length - 1) {
-                System.out.print(", ");
-            }
-        }
-        System.out.print(" infused with ");
-        for (int i = 0; i < color.length; i++) {
-            System.out.print(color[i]);
-            if (i < color.length - 1) {
-                System.out.print(", ");
-            }
-        }
-        System.out.println(" color(s).");
+        System.out.println(pollen);
     }
 
     public List<GardenObject> selectGardenObjectsFromStorageShed(StorageShed storageShed) {
@@ -150,7 +137,7 @@ public class Menu {
     private void displaySelectedObjects(List<GardenObject> selectedObjects, int type) {
         System.out.println("The " + (type == 1 ? "Plants" : "Light Sources") + " that fit the given criteria: ");
         for (GardenObject object : selectedObjects) {
-            System.out.println(object.info());
+            System.out.println(object);
         }
     }
 
