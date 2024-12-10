@@ -80,8 +80,6 @@ public class StorageShed {
     public List<GardenObject> getObjectsWithCriteria(String criteria) throws NumberFormatException, IndexOutOfBoundsException {
         List<GardenObject> result = new ArrayList<>();
         for (GardenObject currentObject : storage) {
-            /* if current currentObject is not type of
-            * what we are looking for, skip that currentObject */
             if (this.searchFilter.filter(currentObject, criteria)) {
                 result.add(currentObject);
             }
