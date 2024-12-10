@@ -77,7 +77,7 @@ public class StorageShed {
         }
     }
 
-    public List<GardenObject> getObjectsWithCriteria(String criteria) throws NumberFormatException, IndexOutOfBoundsException {
+    public List<GardenObject> getObjectsWithCriteria(String criteria) throws IllegalArgumentException {
         List<GardenObject> result = new ArrayList<>();
         for (GardenObject currentObject : storage) {
             if (this.searchFilter.filter(currentObject, criteria)) {
