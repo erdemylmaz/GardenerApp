@@ -4,9 +4,8 @@ import garden.GardenMap;
 import garden.GardenPosition;
 import garden.GardenSquare;
 import garden.Placable;
-import pollen.PollenCloud;
-
 import java.util.Random;
+import pollen.PollenCloud;
 
 /* fill */
 public class Bush extends GardenPlant{
@@ -75,7 +74,7 @@ public class Bush extends GardenPlant{
                         */
                         if(plant.infuse(this.getPollenCloud())) {
                             plant.bloom(map);
-                        };
+                        }
                     }
 
                     break;
