@@ -19,6 +19,11 @@ public class Tree extends GardenPlant{
         super();
     }
 
+    public Tree(String name, String ID, int reach) {
+        super(name, ID);
+        setReach(reach);
+    }
+
     public Tree(GardenPosition position, String name) {
         super(position, name);
         declareReach();

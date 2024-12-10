@@ -23,6 +23,11 @@ public class SmallLamp extends LightSource{
         declareLightReach();
     }
 
+    public SmallLamp(LightColor color, String ID, int lightReach) {
+        super(color, ID);
+        setLightReach(lightReach);
+    }
+
     public SmallLamp(GardenPosition position, LightColor color, int lightReach) {
         super(position, color);
         setLightReach(lightReach);

@@ -40,39 +40,23 @@ public class StorageReader {
                 String name = pieces[2]; // color for lights
                 int area = Integer.parseInt(pieces[3]);
                 switch (type) {
-                    // TODO: Change this constructor to use the new constructor
                     case "flower":
-                        Flower flower = new Flower(new GardenPosition(0, 0), name);
-                        flower.setReach(area);
-                        flower.setID(id);
-                        result.add(flower);
+                        result.add(new Flower(name, id, area));
                         break;
                     case "tree":
-                        Tree tree = new Tree(new GardenPosition(0, 0), name);
-                        tree.setReach(area);
-                        tree.setID(id);
-                        result.add(tree);
+                        result.add(new Tree(name, id, area));
                         break;
                     case "bush":
-                        Bush bush = new Bush(new GardenPosition(0, 0), name);
-                        bush.setReach(area);
-                        bush.setID(id);
-                        result.add(bush);
+                        result.add(new Bush(name, id, area));
                         break;
                     case "small_lamp":
-                        SmallLamp smallLamp = new SmallLamp(new GardenPosition(0, 0), LightColor.valueOf(name.toUpperCase()), area);
-                        smallLamp.setID(id);
-                        result.add(smallLamp);
+                        result.add(new SmallLamp(LightColor.valueOf(name.toUpperCase()), id, area));
                         break;
                     case "large_lamp":
-                        LargeLamp largeLamp = new LargeLamp(new GardenPosition(0, 0), LightColor.valueOf(name.toUpperCase()), area);
-                        largeLamp.setID(id);
-                        result.add(largeLamp);
+                        result.add(new LargeLamp(LightColor.valueOf(name.toUpperCase()), id, area));
                         break;
                     case "spotlight":
-                        Spotlight spotlight = new Spotlight(new GardenPosition(0, 0), LightColor.valueOf(name.toUpperCase()), area);
-                        spotlight.setID(id);
-                        result.add(spotlight);
+                        result.add(new Spotlight(LightColor.valueOf(name.toUpperCase()), id, area));
                         break;
                     default:
                         System.out.println("Error: Unknown type in " + fileName + " at line " + lineNumber);

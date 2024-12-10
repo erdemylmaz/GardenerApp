@@ -23,6 +23,11 @@ public class LargeLamp extends LightSource{
         declareLightReach();
     }
 
+    public LargeLamp(LightColor color, String ID, int lightReach) {
+        super(color, ID);
+        setLightReach(lightReach);
+    }
+
     public LargeLamp(GardenPosition position, LightColor color, int lightReach) {
         super(position, color);
         setLightReach(lightReach);

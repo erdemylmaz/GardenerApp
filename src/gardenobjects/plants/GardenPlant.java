@@ -16,8 +16,9 @@ public abstract class GardenPlant extends GardenObject implements SearchablePlan
     }
 
 //    Name, ID, etc.
-    public GardenPlant(String name) {
+    public GardenPlant(String name, String ID) {
         setName(name);
+        setID(ID);
     }
 
     public GardenPlant(GardenPosition position, String name) {

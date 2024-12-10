@@ -19,6 +19,11 @@ public class Flower extends GardenPlant{
         super();
     }
 
+    public Flower(String name, String ID, int reach) {
+        super(name, ID);
+        setReach(reach);
+    }
+
     public Flower(GardenPosition position, String name) {
         super(position, name);
         declareReach();

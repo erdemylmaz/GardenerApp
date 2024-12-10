@@ -18,6 +18,11 @@ public class Spotlight extends LightSource{
         super();
     }
 
+    public Spotlight(LightColor color, String ID, int lightReach) {
+        super(color, ID);
+        setLightReach(lightReach);
+    }
+
     public Spotlight(GardenPosition position, LightColor color) {
         super(position, color);
         declareLightReach();

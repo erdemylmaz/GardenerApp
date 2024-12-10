@@ -10,6 +10,7 @@ import pollen.LightColor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class StorageShed {
     private final List<GardenObject> storage;
@@ -47,25 +48,27 @@ public class StorageShed {
 
     public List<GardenObject> getObjectsWithCriteria(String criteria) {
         List<GardenObject> result = new ArrayList<>();
-        for (GardenObject object : storage) {
-            if ((objectType == ObjectType.PLANT && object instanceof LightSource) || (objectType == ObjectType.LIGHT_SOURCE && object instanceof GardenPlant))
+        for (GardenObject currentObject : storage) {
+            /* if current currentObject is not type of
+            * what we are looking for, skip that currentObject */
+            if ((objectType == ObjectType.PLANT && currentObject instanceof LightSource) || (objectType == ObjectType.LIGHT_SOURCE && currentObject instanceof GardenPlant))
                 continue;
 
             switch (searchFilter) {
                 case TYPE:
-                    if (object.checkByType(criteria)) {
-                        result.add(object);
+                    if (currentObject.checkByType(criteria)) {
+                        result.add(currentObject);
                     }
                     break;
                 case NAME_OR_COLOR:
-                    if (object instanceof SearchablePlant) {
-                        if (((SearchablePlant) object).checkByName(criteria)) {
-                            result.add(object);
+                    if (currentObject instanceof SearchablePlant) {
+                        if (((SearchablePlant) currentObject).checkByName(criteria)) {
+                            result.add(currentObject);
                         }
-                    } else if (object instanceof SearchableLightSource) {
+                    } else if (currentObject instanceof SearchableLightSource) {
                         try {
-                            if (((SearchableLightSource) object).checkByColor(LightColor.valueOf(criteria.toUpperCase()))) {
-                                result.add(object);
+                            if (((SearchableLightSource) currentObject).checkByColor(LightColor.valueOf(criteria.toUpperCase()))) {
+                                result.add(currentObject);
                             }
                         } catch (IllegalArgumentException e) {
                             System.out.println("Error: Color must be one of the following: RED, GREEN, BLUE, YELLOW, WHITE");
@@ -74,19 +77,19 @@ public class StorageShed {
                     }
                     break;
                 case ID:
-                    if (object.checkByID(criteria)) {
-                        result.add(object);
+                    if (currentObject.checkByID(criteria)) {
+                        result.add(currentObject);
                     }
                     break;
                 case AREA:
                     try {
-                        if (object instanceof LightSource) {
-                            if (((LightSource) object).checkByLightReach(Integer.parseInt(criteria))) {
-                                result.add(object);
+                        if (currentObject instanceof LightSource) {
+                            if (((LightSource) currentObject).checkByLightReach(Integer.parseInt(criteria))) {
+                                result.add(currentObject);
                             }
-                        } else if (object instanceof GardenPlant) {
-                            if (((GardenPlant) object).checkByPollenReach(Integer.parseInt(criteria))) {
-                                result.add(object);
+                        } else if (currentObject instanceof GardenPlant) {
+                            if (((GardenPlant) currentObject).checkByPollenReach(Integer.parseInt(criteria))) {
+                                result.add(currentObject);
                             }
                         }
                     } catch (NumberFormatException e) {
@@ -99,13 +102,14 @@ public class StorageShed {
         return result;
     }
 
-    public GardenObject takeObjectByID(String id) {
+    public GardenObject takeObjectByID(String id) throws NoSuchElementException {
         for (GardenObject object : storage) {
             if (object.checkByID(id)) {
                 storage.remove(object);
                 return object;
             }
         }
-        return null;
+
+        throw new NoSuchElementException("Object with ID " + id + " not found");
     }
 }

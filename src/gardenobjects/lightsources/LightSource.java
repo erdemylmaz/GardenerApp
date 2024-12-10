@@ -22,8 +22,9 @@ public abstract class LightSource extends GardenObject implements SearchableLigh
         System.exit(0);
     }
 
-    public LightSource(LightColor lightColor) {
+    public LightSource(LightColor lightColor, String ID) {
         setLightColor(lightColor);
+        setID(ID);
     }
 
     public LightSource(GardenPosition position, LightColor lightColor) {
