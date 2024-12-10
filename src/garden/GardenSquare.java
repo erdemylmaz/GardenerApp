@@ -1,16 +1,12 @@
 package garden;
 
-import gardenobjects.plants.GardenPlant;
-import pollen.LightColor;
 import pollen.PollenCloud;
-
-import java.util.List;
 
 public class GardenSquare {
     private Placable content;
     private GardenPosition position;
     public GardenSquare() {
-
+        content = null;
     }
     public boolean isOccupied() {
         if (content == null) return false;
@@ -21,6 +17,15 @@ public class GardenSquare {
      *  else don't touch, return false
      */
     public boolean addCloud(PollenCloud cloud) {
+        if (isOccupied()) return false;
+        else if (content == null) {
+            content = new PollenCloud(cloud);
+        }
+        else {
+            PollenCloud contentPollenCloud = (PollenCloud) content;
+            contentPollenCloud.infuse(cloud);
+            this.content = contentPollenCloud;
+        }
         return true;
     }
 
@@ -28,14 +33,15 @@ public class GardenSquare {
         return this.content;
     }
 
-    /*
-     * setter, getter
-     */
-    
-    /* heldObject.toString'i 6'lı stringe ortala */
+    /* align content.getDisplay() to the middle of a 6 character string*/
     @Override
     public String toString() {
-        return null;
+        String display = content.getDisplay();
+        if (display.length() > 6) {
+            System.out.println("display length greater than 6. table will be misaligned.");
+        }
+        int leftSpaces = (6 - display.length()) / 2;
+        return " ".repeat(leftSpaces) + display + " ".repeat(6-display.length()-leftSpaces);
     }
 
     public GardenPosition getPosition() {
