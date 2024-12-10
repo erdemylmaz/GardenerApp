@@ -4,5 +4,8 @@ package garden;
  */
 
 public interface Placable {
-
+    /*
+     * retrieves display string
+     */
+    public String getDisplay();
 }
