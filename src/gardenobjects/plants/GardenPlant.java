@@ -11,7 +11,7 @@ public abstract class GardenPlant extends GardenObject implements SearchablePlan
     private GardenPosition position;
 
     public GardenPlant() {
-        System.out.println("You need to provide at lest position and name? to create a GardenPlant");
+        System.out.println("You need to provide at least position and name? to create a GardenPlant");
         System.exit(0);
     }
 
@@ -39,18 +39,22 @@ public abstract class GardenPlant extends GardenObject implements SearchablePlan
         setName(org.getName());
     }
 
+    @Override
     public boolean checkByID(String id) {
         return this.getID().equals(id);
     }
 
+    @Override
     public boolean checkByType(String type) {
         return type.equals(this.getClass().getName());
     }
 
+    @Override
     public boolean checkByName(String name) {
         return this.name.equals(name);
     }
 
+    @Override
     abstract public boolean checkByPollenReach(int reach);
 
     /*
@@ -58,16 +62,8 @@ public abstract class GardenPlant extends GardenObject implements SearchablePlan
      * 
      * returns true if cloudToSpread changed, false otherwise
      */
-    public boolean infuse(PollenCloud cloud) {
-        if(!cloud.equals(cloudToSpread)) {
-            /*
-            * since the clouds are equal,
-            * no change made, so return false.
-            */
-            return false;
-        }
-        cloudToSpread.infuse(cloud);
-        return true;
+    public boolean infuse(PollenCloud outerCloud) {
+        return cloudToSpread.infuse(outerCloud);
     }
 
     /*
